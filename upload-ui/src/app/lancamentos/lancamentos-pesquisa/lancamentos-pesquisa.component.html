@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+      <div class="ui-g-12">
+        <h1>Cadastro de Pessoa</h1>
+      </div>
+
+
+
+    </form>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="lancamentos" [responsive]="true"
+          emptyMessage="Nenhum lançamento encontrado"
+          [paginator]="true" [rows]="filtro.itensPorPagina"
+          [lazy]="true" [totalRecords]="totalRegistros"
+          (onLazyLoad)="aoMudarPagina($event)"
+          #tabela>
+        <p-column field="nome" header="Pessoa"></p-column>
+        <p-column field="foto" header="Foto"></p-column>
+  
+ 
+     
+        <p-column styleClass="col-acoes">
+            <ng-template let-lanc="rowData" pTemplate="body">
+              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+              <button pButton icon="fa-trash"
+                pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmarExclusao(lanc)"></button>
+            </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Novo Lançamento" routerLink="/lancamentos/novo"></a>
+    </div>
+
+  </div>
+
+</div>
